@@ -12,6 +12,20 @@ if(isset($_POST['submit'])){
     $dados = $_POST ; 
     $sql2 = "UPDATE fornecedor SET nome = '$dados[nome]', email = '$dados[email]', tel = '$dados[tel]' WHERE  email = '$dadosUsu[email]'";
     $result2 = $conn->query($sql2);
+<?php
+include_once("../class/conexao.php");
+session_start();
+$dadosUsu = $_SESSION['dadosUsu'];
+
+
+$sql = "SELECT * FROM fornecedor where email = '$dadosUsu[email]'";
+$result = $conn->query($sql);
+$row = mysqli_fetch_array($result);
+if(isset($_POST['submit'])){
+    $dados = [];
+    $dados = $_POST ; 
+    $sql2 = "UPDATE fornecedor SET nome = '$dados[nome]', email = '$dados[email]', tel = '$dados[tel]' WHERE  email = '$dadosUsu[email]'";
+    $result2 = $conn->query($sql2);
 
     $sql3 = "SELECT * FROM  fornecedor WHERE email = '$dados[email]'";
     $result3 = $conn->query($sql3);
